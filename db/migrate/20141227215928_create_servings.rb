@@ -4,8 +4,8 @@ class CreateServings < ActiveRecord::Migration
       t.string :name
       t.integer :grams
       t.integer :calories
-      t.boolean :susan-approved
-      t.integer :susan-limit
+      t.boolean :susan_approved
+      t.integer :susan_limit
 
       t.timestamps
     end

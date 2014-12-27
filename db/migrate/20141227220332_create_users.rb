@@ -5,7 +5,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :password
       t.string :email
       t.boolean :confirmed
-      t.integer :susan-rating
+      t.integer :susan_rating
 
       t.timestamps
     end
