@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20141227220332) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "meals", force: true do |t|
     t.datetime "date_eaten"
     t.integer  "user_id"

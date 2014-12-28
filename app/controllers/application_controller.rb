@@ -13,4 +13,8 @@ class ApplicationController < ActionController::Base
     ozs / 0.035274
   end
 
+  def current_user
+    @current_user = User.find(session[:user_id])
+  end
+
 end

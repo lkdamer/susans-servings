@@ -13,3 +13,19 @@
  *= require_tree .
  *= require_self
  */
+
+h1 {
+  color: #CC116B;
+  font-family: Alex Brush;
+  text-align: center;
+}
+
+.btn {
+  color: #CC116B;
+  background-color: #FFDA3E;
+}
+
+.btn:hover {
+  color: #CC116B;
+  background-color: #FFDA3E;
+}
