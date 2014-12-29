@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   get "/", to: "home#index", as: :root
 
-  resources :meals
+  resources :meals, :users, :servings, :sessions
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
