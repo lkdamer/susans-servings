@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+gem 'resque'
+gem 'heroku_resque_autoscaler'
 
 group :development do
   gem 'better_errors'
