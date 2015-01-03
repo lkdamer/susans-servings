@@ -3,9 +3,8 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params.require(:user).permit(:name, :email, :password))
     if @user.save
-      
-      flash[:notice] = "Thank you for creating an account. Check your email to confirm your account and get started."
-      redirect_to root_path
+      session[:current_user] = @user.id
+      redirect_to @user
     else
       flash[:notice] = "There was an internal server error and this user could not be saved."
       redirect_to root_path
@@ -14,6 +13,11 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(session[:current_user])
+    unless @user.id == params[:id]
+      flash[:notice] = "You are not authorized to visit that user's page."
+      redirect_to root_path
+    end
+    
   end
 
 end
