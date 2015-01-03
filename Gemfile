@@ -3,6 +3,8 @@ source 'https://rubygems.org'
 # gem 'resque'
 # gem 'heroku_resque_autoscaler'
 
+gem 'bootstrap_form'
+
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'

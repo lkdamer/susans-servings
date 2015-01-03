@@ -13,11 +13,11 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(session[:current_user])
-    unless @user.id == params[:id]
+    unless @user.id == params[:id].to_i
       flash[:notice] = "You are not authorized to visit that user's page."
       redirect_to root_path
     end
-    
+
   end
 
 end
