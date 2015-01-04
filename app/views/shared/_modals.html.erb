@@ -17,8 +17,8 @@
       <div class="modal-footer">
           <%= f.submit "Sign Up", class: "btn btn-default"%>
           <% end %>
-      </div>        <!-- end modal footer -->
-    </div>      <!-- end modal content -->
+      </div>    <!-- end modal footer -->
+    </div>   <!-- end modal content -->
   </div>
 </div>
 
@@ -31,11 +31,40 @@
       </div>
       <div class="modal-body">
         <%= bootstrap_form_for Meal.new, url: meals_path do |f| %>
-          <%= f.label :date_eaten, "When did you eat this meal?" %><br>
-          <%= f.datetime_local_field :date_eaten %> <br>
+          <%= f.hidden_field :user_id, value: @current_user.id %>
+          <%= f.datetime_select :date_eaten, label: 'When did you eat this meal?' %> <br>
       </div>         <!-- end modal body -->
       <div class="modal-footer">
           <%= f.submit "Register Meal", class: "btn btn-default"%>
+          <% end %>
+      </div>        <!-- end modal footer -->
+    </div>      <!-- end modal content -->
+  </div>
+</div>
+
+<div class="modal fade" id="newServingModal" tabindex="-1" role="dialog" aria-labelledby="newServingModalLabel" aria-hidden="true" data-backdrop = "false">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Add a serving</h4>
+      </div>
+      <div class="modal-body">
+        <%= bootstrap_form_for Serving.new, url: servings_path do |f| %>
+          <% options = [true, false] %>
+          <% units = ['ounces', 'grams'] %>
+          <%= f.text_field :name, label: "Name" %>
+          <%= f.text_field :grams, label: 'Weight' %>
+          <%= label_tag :units, "Units" %>
+          <%= select_tag :units, "<option>ounces</option><option>grams</option>".html_safe %> <br><br>
+          <%= f.text_field :calories, label: 'Caloric content' %>
+
+          <%= f.select :susan_approved, options, label: "Susan approves of this food." %>
+          <%= f.text_field :susan_limit, label: "How many of these servings would Susan allow in a day?" %>
+          <br>
+      </div>         <!-- end modal body -->
+      <div class="modal-footer">
+          <%= f.submit "Register Serving", class: "btn btn-default"%>
           <% end %>
       </div>        <!-- end modal footer -->
     </div>      <!-- end modal content -->
@@ -57,7 +86,7 @@
           <%= password_field_tag :password %>
       </div>
       <div class="modal-footer">
-          <%= submit_tag "Sign Up", class: "btn btn-default"%>
+          <%= submit_tag "Sign In", class: "btn btn-default"%>
       </div>
     </div>
   </div>

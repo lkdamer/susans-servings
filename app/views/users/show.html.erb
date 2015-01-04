@@ -1,10 +1,14 @@
 <h3> Hello <%= @user.name %> </h3>
 
 <% if @user.meals.length > 0 %>
-
+  
 <% else %>
   You don't have any meals.
   <button type="button" class="btn btn-default" data-toggle="modal" data-target="#newMealModal">
     Add a meal
   </button>
 <% end %>
+
+<button type="button" class="btn btn-default" data-toggle="modal" data-target="#newServingModal">
+  Add a serving
+</button>

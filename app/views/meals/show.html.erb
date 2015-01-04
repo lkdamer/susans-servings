@@ -1,0 +1,18 @@
+<%= @meal.date_eaten %><br>
+
+<% if @meal.portions.length > 0 %>
+  <!-- <#% @meal.portions.each do  %> -->
+<% else %>
+
+  <% @servings.each do |serving| %>
+    <%= bootstrap_form_for Portion.new do |f| %>
+      <%= serving.name %>
+      <%= f.hidden_field :meal_id, value: @meal.id %>
+      <%= f.hidden_field :serving_id, value: serving.id %>
+      <%= f.text_field :grams %>
+      <%= radio_button_tag 'weight', 'oz' %>
+      <%= radio_button_tag 'weight', 'grams' %>
+      <%= f.submit "Add serving", class: 'btn btn-default' %>
+    <% end %>
+  <% end %>
+<% end %>

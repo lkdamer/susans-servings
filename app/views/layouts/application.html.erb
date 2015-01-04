@@ -18,7 +18,7 @@
     <hr>
       <% if @current_user %>
         <%= link_to "My Account", @current_user, class: "btn btn-default" %>
-        <%= link_to "Sign Out", '/sessions', method: :delete, class: "btn btn-default" %>
+        <%= link_to "Sign Out", session_path(0), method: :delete, class: "btn btn-default" %>
         <hr>
       <% end %>
       <%= render "/shared/modals.html.erb" %>

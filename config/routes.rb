@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   get "/", to: "home#index", as: :root
+  delete '/session', to: 'sessions#destroy', as: :session_path
 
-  resources :meals, :users, :servings, :sessions
+  resources :meals, :users, :servings, :portions, :sessions
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
