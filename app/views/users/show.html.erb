@@ -1,14 +1,18 @@
-<h3> Hello <%= @user.name %> </h3>
-
-<% if @user.meals.length > 0 %>
-  
-<% else %>
-  You don't have any meals.
-  <button type="button" class="btn btn-default" data-toggle="modal" data-target="#newMealModal">
-    Add a meal
-  </button>
-<% end %>
-
+<h3> Hello, <%= @user.name %>! </h3><br>
+<button type="button" class="btn btn-default" data-toggle="modal" data-target="#newMealModal">
+  Add a meal
+</button>
 <button type="button" class="btn btn-default" data-toggle="modal" data-target="#newServingModal">
   Add a serving
 </button>
+<hr>
+<% if @user.meals.length > 0 %>
+  <% @user.meals.each do |m| %>
+    <%= m.date_eaten %>
+    <% m.portions.each do |p| %>
+      <%= p.serving.name %> <%= p.grams %> grams
+    <% end %>
+  <% end %>
+<% else %>
+  You don't have any meals.
+<% end %>
