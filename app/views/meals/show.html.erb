@@ -1,20 +1,23 @@
-<%= @meal.date_eaten %><br>
+On <%= @meal.date_eaten.strftime("%B %-d, %Y at %l:%M %P") %> you ate ...<br>
 
 <% if @meal.portions.length > 0 %>
-  <% @meal.portions.each do |p| %>
-    <%= p.serving.name %> <%= p.grams %> grams
-  <% end %>
-<% else %>
-
-  <% @servings.each do |serving| %>
-    <h3> <%= serving.name %> </h3>
-    <%= bootstrap_form_for Portion.new, url: '/portions', layout: :horizontal do |f| %>
-      <%= f.text_field :grams, label: 'Portion size ' %>
-      <%= label_tag :units, "Units " %>
-      <%= select_tag :units, "<option>ounces</option><option>grams</option>".html_safe %>
-      <%= f.hidden_field :meal_id, value: @meal.id %>
-      <%= f.hidden_field :serving_id, value: serving.id %>
-      <%= f.submit "Add serving", class: 'btn btn-default' %>
-    <% end %> <br>
-  <% end %>
+  <ul>
+    <% @meal.portions.each do |p| %>
+      <% p.serving.susan_approved && p.grams <= (p.serving.grams * p.serving.susan_limit) ? approved = "approved of this serving." : approved = "did not approve of this serving." %>
+      <li><%= p.grams %> grams of <%= p.serving.name.downcase %>. This was <%= p.calories %> calories. Susan <%= approved %></li>
+    <% end %>
+  </ul>
+<% end %>
+<hr>
+Add more portions: <br>
+<% @servings.each do |serving| %>
+  <h3> <%= serving.name %> </h3>
+  <%= bootstrap_form_for Portion.new, url: '/portions', layout: :horizontal do |f| %>
+    <%= f.text_field :grams, label: 'Portion size ' %>
+    <%= label_tag :units, "Units " %>
+    <%= select_tag :units, "<option>ounces</option><option>grams</option>".html_safe %>
+    <%= f.hidden_field :meal_id, value: @meal.id %>
+    <%= f.hidden_field :serving_id, value: serving.id %>
+    <%= f.submit "Add serving", class: 'btn btn-default' %>
+  <% end %> <br>
 <% end %>

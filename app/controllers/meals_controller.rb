@@ -15,6 +15,10 @@ class MealsController < ApplicationController
 
   def show
     @meal = Meal.find(params[:id])
+    unless @meal.user == @current_user
+      flash[:notice] = "You are not authorized to see this page."
+      redirect_to root_path
+    end
     @servings = Serving.all
   end
 
