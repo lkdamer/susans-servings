@@ -1,12 +1,19 @@
 On <%= @meal.date_eaten.strftime("%B %-d, %Y at %l:%M %P") %> you ate ...<br>
 
 <% if @meal.portions.length > 0 %>
+  <% cals = 0 %>
   <ul>
     <% @meal.portions.each do |p| %>
+      <% cals += p.calories %>
       <% p.serving.susan_approved && p.grams <= (p.serving.grams * p.serving.susan_limit) ? approved = "approved of this serving." : approved = "did not approve of this serving." %>
-      <li><%= p.grams %> grams of <%= p.serving.name.downcase %>. This was <%= p.calories %> calories. Susan <%= approved %></li>
+      <li>
+        <%= p.grams %> grams (<%= p.to_oz %> ounces) of
+        <%= p.serving.name.downcase %>.
+        This was <%= p.calories %> calories. Susan <%= approved %>
+      </li>
     <% end %>
   </ul>
+  During this meal, you consumed a total of <%= cals %> calories.
 <% end %>
 <hr>
 Add more portions: <br>

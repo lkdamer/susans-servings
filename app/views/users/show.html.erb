@@ -8,10 +8,12 @@
 <hr>
 <% if @user.meals.length > 0 %>
   <% @user.meals.each do |m| %>
-    <%= m.date_eaten %>
-    <% m.portions.each do |p| %>
-      <%= p.serving.name %> <%= p.grams %> grams
-    <% end %>
+    <%= link_to m.date_eaten.strftime("%B %-d, %Y at %l:%M %P"), m %>
+    <ul>
+      <% m.portions.each do |p| %>
+        <li><%= p.serving.name %> <%= p.grams %> grams</li>
+      <% end %>
+    </ul>
   <% end %>
 <% else %>
   You don't have any meals.
